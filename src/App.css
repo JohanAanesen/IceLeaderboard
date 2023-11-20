@@ -65,6 +65,121 @@
   animation: wave 3s ease-in-out infinite;
 }
 
+.spinner-wrapper {
+  width: 320px;
+  height: 320px;
+  position: relative;
+}
+
+.spinning-track-artwork {
+  width: 312px;
+  height: 312px;
+  margin: 4px;
+  background: #fff;
+  position: relative;
+  display: block;
+  background-size: cover;
+  will-change: transform;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.spinning-track-artwork:before {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: "";
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAAA1JREFUCNdjOACEQAAACQgBgeEHEZ0AAAAASUVORK5CYII=);
+  background-size: 2px 2px;
+  opacity: 0.5;
+  z-index: 2;
+}
+.spinning-track {
+  width: 320px;
+  height: 320px;
+  position: relative;
+  border-radius: 50%;
+  display: block;
+  z-index: 2;
+  overflow: hidden;
+}
+.spinning-track:after {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  content: "";
+  z-index: 3;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAFABAMAAAA/vriZAAAAD1BMVEUAAAD///8AAAAODg4WFhYXaaUwAAAAAXRSTlMAQObYZgAABP5JREFUeNrtnVuS0zAQRVuGBdBiA4pXADtg/6uCFrZIBUKNLSk+Xen+m5qfU/chOTOxJANnWbcpQpvfaDfdJrMwl4r292QE4z3dF9kmcRh3un/9bmeU62ZZm3B/T5PyIhEN79bo/suYX4/Y3JUPzDU+L2s190OTenzul48o4non3wEROxC73KX5/OAuzudT8v0RcTqh8cnpmU+4mnwdkyYTLpWvk3BiU5ab8fUS5p0QyXdHCOVrhFi+SYTGpzJo9BchmW8KYeUbSjiWbzW+sYQrmq8SovkqIWUDfr4tUzbgydvybQ6fEeYhAs7iM8IyRECZNiMkXOcJaBKuAxoiE0e1UBvSeoJtyJCeLBMb0npSuAZvJmMb0nqCXALvTcY2pPUE25DWE2pDWk+wDWk9wTZkNxnbkNYTbENaT6gNaT0BJ/C3hOAEbilEC2gSogWsEqIFNAnRAh6TcFG5YLSgHTaP0Q5Xj9ECmoRoAauEaAE/LOHti1w0KaMdrh6jHTaP0QJWCdECmoTgivyuCdrh6jHaYfMYLWCVEC2gSYgWsEqIe1J9fG5FO2weYxfBfSlER7CGEB1BCyE6ghZCdAQthGyHzWO0w+Yx2mHzGLzI/G+h+QRxWES/oSP4NITfIQ6LpK/oCD4L4WeMwyL6Ax1BCyE6ghZC7j6373Zoh81j7D6373bgRWZbaNARtBCiI2ghREfQQoiOYA0hOoIWQnQELYToCIokX4C4jtSWoDsi4guQV2KrMbojIikAuwHZHbGWBGAvIDqCFsIA7AUEPypsjwvojoj4ASQ+KlTAjO6ISArAbkB2R6wlAdgLiI6ghTAAewHZEbQQBmAAHpo3BeSuMrbOBGAAHpu3BIR+am+f3dHLoEgABuDBCUDcBOA7AFL/erkBZvSzgkgKwAA8NgGImwAMwIMTgLgJwAA8OO8JSH/kx39oCsAAPDIBiJsAfA9A8GactPD/FRaAAXhk3hOQvBD6+N5MAAbghaPFw1dEA7AH0McXvQOwA9DH6xoBeB7Qy0tX1Jb4ea8O+tk9afHy8mkAngX08wp5AJ4E9HMQRACeA/R0nAuxJb5O7AE+LiQtno61cgCIC6FmX4fT4VqStPg6IBEXQs3eDumEhTBp8XZQLCyEmv0dVow/7hnlsWaPR46DFpqkxeOx96AQavZ59QImhEmLz+s/MCHU7PUKGojHKfu9BonhsRa/V3EhQpiy5+vgCCHU4vlKQoDHmn1fi3m5hJq9X82Kv9yWfz0w/oJl/BXV/Eu+8dek8y+ax1/Vf5mEJiBZwiogWcJHAXHPrSYg2ePqMNljc5gsYRWQLKEJSJawCkiW0AQ8BvhaCdNhwOW1Emo2h7kp3BLITWE1+LiELyPUTUBqT1pDqD1pDYH2pDWE2pPdYGpPWkOgPWkNofakNQTak60hWJObwdSeWEM6Z50pYdL1zw/ExbAZDO1Jawi0J3tD+iWcQ5isIUNmnUKY1BoyjFCGT+UDE1Y+MOFgPquyjuXLMnYWIxzJVwRMOIHPCIct2Ok3H5aw8UEJ7/iQhE/5INvy8w2YsS3/tQHPINSO9WU6nxGeFjHN5WuENxPxnHx5lRfMUkU8JV+R18xaEQ/jHZSv32egu48+A919EBEq3y7i7QMiJsPrkK/b5/8yJu13t99nmyfWdrg7TsSd0aT8I9xO90u+y2dn3IdFtzPa3O7QVhDdA+ZgtJ+S/IIH8pKYNgAAAABJRU5ErkJggg==)
+    no-repeat 50%;
+}
+.spinning-track-center {
+  width: 118px;
+  height: 116px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: block;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwBAMAAAA0zul4AAAAGFBMVEUAAADv7+/s7Oz///+Xl5cAAABpaWmVlZVVM2PqAAAAAXRSTlMAQObYZgAAAmJJREFUWMOU0dGNwjAQBFCkVGAkCgCJ/0iWO1hy3yG4g/Rfw5nJhcndes/e+QB+nmbWnMwMsWQ8ORMP8bKUSxYHxcZinreSe/nRuxjsdghoj0s7I10gWw4bGSxuygGuKsd+dw0hnJVsuYCAtiVdOOYjTRef3FiRMZpD6WqSY+tD6RhzLArpLMlKNRTOlKxUL2O5cLbe56cwmDHeZ2ChFV6pC+HssahUhRzqqGShr5KF3sqBhe3KUS0NzXArl6KwXYmthCzsqSRkYV/lbxi8kEvdW2PC0u7KJTqXIttW/hlXFxx5ImD31pEnBheM6kTXkeaJOdvQPvGSc4w5z/aRgNotEUmzC8JZEtA6MQMh2TiSULm8fc1q6w710gVMvkDT3A0vbyciq8hb1iHeRhcmkQny/bv2OoBX9aTpJcgqj4Vbm7CUTLKiEJVNyKUvtGHtg1vbMIFBlsq/8PyBeqnATMKtffAFg2ctz1OH8VmFGIrPqQbv0YSQqHXBCWyFbUM+6nbhihvxrL0Qbr9RwfAP/O7Mjm0gCIEYilZ1HaCthBau/5W8AZEl5l1wmQViYMb+u1OMZ+V/IoziFPJ3fTg7im+vs3KczU7LcY6nCPuVy6r7rHh3yVPCiMslb88qoixYnlV7yDmYiP93D/nsNcpnZaezZhVZb1a9Peae9vbYG3J+acjjEbDqCPChw2NOB6uPcjYPaFfcILElYxPItlONLltrNvMaHziwcETiUKYxkIMnR10N1xznFSAwsmBIolhGQRCjJ4VdjNcY6DlCdGjpmNTBrKNgh8+Oux2wO9L3jwj82eIFyLtQXi4sWGYAAAAASUVORK5CYII=)
+    no-repeat 50%;
+  z-index: 4;
+}
+.spinning-track-background {
+  width: 320px;
+  height: 320px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%;
+  opacity: 0.2;
+  display: block;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAAFAAQMAAAD3XjfpAAAABlBMVEUAAAAAAAClZ7nPAAAAAXRSTlMAQObYZgAAApVJREFUaN7s08GJwzAQheEYH3R0CSrFpUmluRSV4KMORtpllzAkivXPBERCyDt/EL03zqXNVGu8KOLrbzI7V/+SyE3/jn99ucIdYLjConohv3IVeEAVSeQqXKfeBKpIElXhOldBvz3fww06Y29/D3P/zpICZ6HjuBYmeCI8MrSwwBMlEeaWyTtz4+TrI3jAFyGBJ0o2mFsm73SBNv4xzJ3SULueBA4oibCO7EPryD5cWmq3pbl2OIMF1pHwOrJPW5prL+dw53VkH15H9pF1eB8pzbXnHtyega4HUzsjD+l7MLcz8pChB8szsHYDh5HEZm9c3PVhgr1lcTv0fZjhMHKaZm9cvELMcCIYm8PAaRzB1OwNi3uC2QpXgocVBoLFCivGCCeGUU4Nx7ZBxzDZ4MJwt0HPMNvgyvCwwcCwyDcBMcFJA6MFzhq4WaDTwGSBiwbuQ6DXwDwErhp4vBYGDSxDYFVlADz/b90mDoCzDm6vhE4H0wC46OA+AHodzJ8FVx08PgsGHSxf+LawKvOFX/jTvh2cMAwEQRDMP2uBAlDTS8OyIL8PjB9Gupma/+D7OfG//g9+HTzxdM0PnniTyg8uvgwvXgFO3JD2LpB71+bFsOBIlrIVNS0GbH1a2CeafeqaJ8MilK7z8D6z73uFvvvo+xlRDcWtVN+c9e1e30Da8pPrVFvQcuWbt8226Obq3JbxvQNggmBRAzMJCS9688HcxAIWJjEW2fS+h2mRxErMnzyoYqLl0RczMg/TmLoxnhtyPAZ+TAanCJFZI0NJTy8Zc3oeyuCUf/YQxTKzZbg7psCMi5krzwE0k2pG2sy+55CcaTpjd8/nGeTzdwejAZ4h8LCBpxI8vpjNOWAgEkxOeMTCs5gH9c/lqZizIr8AAAAASUVORK5CYII=)
+    no-repeat 50%;
+}
+
+.spinning-track-overlay-cd {
+  pointer-events: none;
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+  bottom: 4px;
+  content: "";
+  background: url("https://poolsuite.net/img/overlay+opacity.5fb5082a.png");
+  opacity: 0.15;
+  background-blend-mode: soft-light;
+  z-index: 3;
+  border-radius: 50%;
+}
+
+.inner-spinner {
+  animation-name: rotate-disc;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-duration: 0.5s;
+}
+
+.inner-spinner.paused {
+  animation-play-state: paused;
+}
+
+@keyframes rotate-disc {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 @keyframes wave {
   0% {
     transform: translate(0);
