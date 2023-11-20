@@ -1,71 +1,72 @@
-import iceice from "../../assets/iceice.png";
-import icemp3 from "../../assets/ice.mp3";
-import icebottle from "../../assets/icebottle.png";
-import { useCallback, useEffect, useState } from "react";
+import iceice from '../../assets/newiceice.png'
+import icemp3 from '../../assets/ice.mp3'
+import icebottle from '../../assets/icebottle.png'
+import { useCallback, useEffect, useState } from 'react'
 
 const Ice: React.FC = () => {
   // state to store time
-  const [time, setTime] = useState(0);
+  const [time, setTime] = useState(0)
 
   // state to check stopwatch running or not
-  const [isRunning, setIsRunning] = useState(false);
+  const [isRunning, setIsRunning] = useState(false)
 
-  const [paused, setPaused] = useState(true);
+  const [paused, setPaused] = useState(true)
 
-  let audio = new Audio(icemp3);
+  let audio = new Audio(icemp3)
 
   const start = useCallback(() => {
     if (audio.paused) {
-      audio.play();
-      setPaused(false);
+      audio.play()
+      setPaused(false)
     } else {
-      audio.pause();
-      setPaused(true);
+      audio.pause()
+      setPaused(true)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    let intervalId: number | undefined;
+    let intervalId: number | undefined
     if (isRunning) {
       // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
-      intervalId = setInterval(() => setTime(time + 1), 10);
+      intervalId = window.setInterval(() => setTime(time + 1), 10)
     }
-    return () => clearInterval(intervalId);
-  }, [isRunning, time]);
+    return () => clearInterval(intervalId)
+  }, [isRunning, time])
 
   // Seconds calculation
-  const seconds = Math.floor((time % 6000) / 100);
+  const seconds = Math.floor((time % 6000) / 100)
 
   // Milliseconds calculation
-  const milliseconds = time % 100;
+  const milliseconds = time % 100
 
   // Method to start and stop timer
   const startAndStop = () => {
-    setIsRunning(!isRunning);
-  };
+    setIsRunning(!isRunning)
+  }
 
   // Method to reset timer back to 0
   const reset = () => {
-    setTime(0);
-  };
+    setIsRunning(false)
+    setTime(0)
+  }
 
   return (
     <>
-      <div className="h-screen">
+      <div className='h-screen'>
         <img
           src={icebottle}
-          className="absolute rotate-90 bottom-0 m-auto left-0 right-0 translate-y-[320px]"
+          className='absolute rotate-90 bottom-0 m-auto left-0 right-0 translate-y-[320px]'
         />
-        <div className="flex flex-row">
-          <div className="window w-1/2 m-4">
-            <div className="title-bar">
-              <button aria-label="Close" className="close"></button>
-              <h1 className="title">ICE Leaderboard</h1>
-              <button aria-label="Resize" className="resize"></button>
+        <div className='flex flex-row'>
+          <div className='window w-1/2 m-4'>
+            <div className='title-bar'>
+              <button aria-label='Close' className='close'></button>
+              <h1 className='title'>ICE Leaderboard</h1>
+              <button aria-label='Resize' className='resize'></button>
             </div>
-            <div className="separator"></div>
+            <div className='separator'></div>
 
-            <div className="window-pane">
+            <div className='window-pane'>
               <ul>
                 <li>1. Robin 4,91</li>
                 <li>2. Christian 5,10</li>
@@ -81,50 +82,60 @@ const Ice: React.FC = () => {
             </div>
           </div>
 
-          <div className="window w-1/2 m-4">
-            <div className="title-bar">
-              <button aria-label="Close" className="close"></button>
-              <h1 className="title">Ice Ice Baby</h1>
-              <button aria-label="Resize" className="resize"></button>
+          <div className='window w-1/2 m-4'>
+            <div className='title-bar'>
+              <button aria-label='Close' className='close'></button>
+              <h1 className='title'>Ice Ice Baby</h1>
+              <button aria-label='Resize' className='resize'></button>
             </div>
-            <div className="separator"></div>
+            <div className='separator'></div>
 
-            <div className="window-pane relative overflow-hidden h-[512px] p-0">
-              <div className="wave absolute"></div>
-              <div className="absolute inset-0 flex justify-center items-center">
-                <img
-                  src={iceice}
-                  className={`w-[318px] h-[318px] ${
-                    paused ? "" : "animate-spin"
-                  }`}
-                ></img>
+            <div className='window-pane relative overflow-hidden h-[512px] p-0'>
+              <div className='wave absolute' />
+              <div className='absolute inset-0 flex justify-center items-center'>
+                <div className='spinner-wrapper'>
+                  <div className='spinning-track'>
+                    <div
+                      className={`inner-spinner spinning-track-artwork ${
+                        paused ? 'paused' : ''
+                      } `}
+                      style={{
+                        backgroundImage: 'url(' + iceice + ')',
+                      }}
+                    >
+                      <div className='spinning-track-center' />
+                    </div>
+                  </div>
+                  <div className='spinning-track-background' />
+                  <div className='spinning-track-overlay-cd' />
+                </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0">
-                <button className="btn m-4" onClick={start}>
-                  {paused ? "Play" : "Pause"}
+              <div className='absolute bottom-0 left-0 right-0'>
+                <button className='btn m-4' onClick={start}>
+                  {paused ? 'Play' : 'Pause'}
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <div className="window">
-          <div className="title-bar">
-            <button aria-label="Close" className="close"></button>
-            <h1 className="title">Timer</h1>
-            <button aria-label="Resize" disabled className="hidden"></button>
+        <div className='window'>
+          <div className='title-bar'>
+            <button aria-label='Close' className='close'></button>
+            <h1 className='title'>Timer</h1>
+            <button aria-label='Resize' disabled className='hidden'></button>
           </div>
-          <div className="separator"></div>
+          <div className='separator'></div>
 
-          <div className="modeless-dialog">
-            <div className="text-4xl">
-              {seconds.toString().padStart(2, "0")}:
-              {milliseconds.toString().padStart(2, "0")}
+          <div className='modeless-dialog'>
+            <div className='text-4xl'>
+              {seconds.toString().padStart(2, '0')}:
+              {milliseconds.toString().padStart(2, '0')}
             </div>
-            <div className="stopwatch-buttons">
-              <button className="btn m-2" onClick={startAndStop}>
-                {isRunning ? "Stop" : "Start"}
+            <div className='stopwatch-buttons'>
+              <button className='btn m-2' onClick={startAndStop}>
+                {isRunning ? 'Stop' : 'Start'}
               </button>
-              <button className="btn m-2" onClick={reset}>
+              <button className='btn m-2' onClick={reset}>
                 Reset
               </button>
             </div>
@@ -132,7 +143,7 @@ const Ice: React.FC = () => {
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export { Ice };
+export { Ice }
