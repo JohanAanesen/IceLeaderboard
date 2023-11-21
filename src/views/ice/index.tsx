@@ -53,91 +53,99 @@ const Ice: React.FC = () => {
   return (
     <>
       <div className="">
-        <div className="md:flex">
-          <div className="window md:w-1/2 md:mr-2 mb-4">
-            <div className="title-bar">
-              <button aria-label="Close" className="close"></button>
-              <h1 className="title">ICE Leaderboard</h1>
-              <button aria-label="Resize" className="resize"></button>
-            </div>
-            <div className="separator"></div>
+        <div className="grid md:grid-cols-2">
+          <div className="p-4">
+            <div className="window h-full">
+              <div className="title-bar">
+                <button aria-label="Close" className="close"></button>
+                <h1 className="title">ICE Leaderboard</h1>
+                <button aria-label="Resize" className="resize"></button>
+              </div>
+              <div className="separator"></div>
 
-            <div className="window-pane">
-              <ul>
-                <li>1. Robin 4,91</li>
-                <li>2. Christian 5,10</li>
-                <li>3. Jaran 6,96</li>
-                <li>4. André 7,16</li>
-                <li>5. Bendik 7.28</li>
-                <li>6. Johan 7.95</li>
-                <li>7. Marius 9,91</li>
-                <li>8. Jonathan 13,51</li>
-                <li>9. Anndrea 20,45</li>
-                <li>10. Ida 22,79</li>
-              </ul>
+              <div className="window-pane">
+                <ul>
+                  <li>1. Robin 4,91</li>
+                  <li>2. Christian 5,10</li>
+                  <li>3. Jaran 6,96</li>
+                  <li>4. André 7,16</li>
+                  <li>5. Bendik 7.28</li>
+                  <li>6. Johan 7.95</li>
+                  <li>7. Marius 9,91</li>
+                  <li>8. Jonathan 13,51</li>
+                  <li>9. Anndrea 20,45</li>
+                  <li>10. Ida 22,79</li>
+                </ul>
+              </div>
             </div>
           </div>
+          <div className="p-4">
+            <div className="window">
+              <div className="title-bar">
+                <button aria-label="Close" className="close"></button>
+                <h1 className="title">Ice Ice Baby</h1>
+                <button aria-label="Resize" className="resize"></button>
+              </div>
+              <div className="separator"></div>
 
-          <div className="window md:w-1/2 md:ml-2 mb-4">
+              <div className="window-pane relative overflow-hidden h-[512px] p-0">
+                <div className="wave absolute" />
+                <div className="absolute inset-0 flex justify-center items-center">
+                  <div className="spinner-wrapper">
+                    <div className="spinning-track">
+                      <div
+                        className={`inner-spinner spinning-track-artwork ${
+                          paused ? "paused" : ""
+                        } `}
+                        style={{
+                          backgroundImage: "url(" + iceice + ")",
+                        }}
+                      >
+                        <div className="spinning-track-center" />
+                      </div>
+                    </div>
+                    <div className="spinning-track-background" />
+                    <div className="spinning-track-overlay-cd" />
+                  </div>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0">
+                  <button className="btn m-4" onClick={start}>
+                    {paused ? "Play" : "Pause"}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="p-4">
+          <div className="window p-4">
             <div className="title-bar">
               <button aria-label="Close" className="close"></button>
-              <h1 className="title">Ice Ice Baby</h1>
-              <button aria-label="Resize" className="resize"></button>
+              <h1 className="title">Timer</h1>
+              <button aria-label="Resize" disabled className="hidden"></button>
             </div>
             <div className="separator"></div>
 
-            <div className="window-pane relative overflow-hidden h-[512px] p-0">
-              <div className="wave absolute" />
-              <div className="absolute inset-0 flex justify-center items-center">
-                <div className="spinner-wrapper">
-                  <div className="spinning-track">
-                    <div
-                      className={`inner-spinner spinning-track-artwork ${
-                        paused ? "paused" : ""
-                      } `}
-                      style={{
-                        backgroundImage: "url(" + iceice + ")",
-                      }}
-                    >
-                      <div className="spinning-track-center" />
-                    </div>
-                  </div>
-                  <div className="spinning-track-background" />
-                  <div className="spinning-track-overlay-cd" />
-                </div>
+            <div className="modeless-dialog">
+              <div className="text-4xl">
+                {seconds.toString().padStart(2, "0")}:
+                {milliseconds.toString().padStart(2, "0")}
               </div>
-              <div className="absolute bottom-0 left-0 right-0">
-                <button className="btn m-4" onClick={start}>
-                  {paused ? "Play" : "Pause"}
+              <div className="stopwatch-buttons">
+                <button className="btn m-2" onClick={startAndStop}>
+                  {isRunning ? "Stop" : "Start"}
+                </button>
+                <button className="btn m-2" onClick={reset}>
+                  Reset
                 </button>
               </div>
             </div>
           </div>
         </div>
-        <div className="window mb-4">
-          <div className="title-bar">
-            <button aria-label="Close" className="close"></button>
-            <h1 className="title">Timer</h1>
-            <button aria-label="Resize" disabled className="hidden"></button>
-          </div>
-          <div className="separator"></div>
-
-          <div className="modeless-dialog">
-            <div className="text-4xl">
-              {seconds.toString().padStart(2, "0")}:
-              {milliseconds.toString().padStart(2, "0")}
-            </div>
-            <div className="stopwatch-buttons">
-              <button className="btn m-2" onClick={startAndStop}>
-                {isRunning ? "Stop" : "Start"}
-              </button>
-              <button className="btn m-2" onClick={reset}>
-                Reset
-              </button>
-            </div>
-          </div>
-        </div>
-        <img src={icebottle} className="md:rotate-90 m-auto left-0 right-0" />
+        <img
+          src={icebottle}
+          className="md:rotate-90 md:translate-y-[-330px] mx-auto left-0 right-0"
+        />
       </div>
     </>
   );
