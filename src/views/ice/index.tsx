@@ -57,9 +57,7 @@ const Ice: React.FC = () => {
           <div className="p-4">
             <div className="window h-full">
               <div className="title-bar">
-                <button aria-label="Close" className="close"></button>
                 <h1 className="title">ICE Leaderboard</h1>
-                <button aria-label="Resize" className="resize"></button>
               </div>
               <div className="separator"></div>
 
@@ -82,9 +80,7 @@ const Ice: React.FC = () => {
           <div className="p-4">
             <div className="window">
               <div className="title-bar">
-                <button aria-label="Close" className="close"></button>
                 <h1 className="title">Ice Ice Baby</h1>
-                <button aria-label="Resize" className="resize"></button>
               </div>
               <div className="separator"></div>
 
@@ -120,9 +116,7 @@ const Ice: React.FC = () => {
         <div className="p-4">
           <div className="window">
             <div className="title-bar">
-              <button aria-label="Close" className="close"></button>
               <h1 className="title">Timer</h1>
-              <button aria-label="Resize" disabled className="hidden"></button>
             </div>
             <div className="separator"></div>
 
