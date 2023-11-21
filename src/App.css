@@ -9,6 +9,12 @@
   text-align: center;
 }
 
+body {
+  background-image: url('./src/assets/smirrinikkbg.png');
+  background-repeat: repeat;
+  background-size: contain;
+}
+
 .window {
   margin: 0;
 }
