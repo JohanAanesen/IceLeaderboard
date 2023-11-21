@@ -52,7 +52,7 @@ const Ice: React.FC = () => {
 
   return (
     <>
-      <div className="">
+      <div className="h-screen">
         <div className="grid md:grid-cols-2">
           <div className="p-4">
             <div className="window h-full">
