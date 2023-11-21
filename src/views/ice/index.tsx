@@ -118,7 +118,7 @@ const Ice: React.FC = () => {
           </div>
         </div>
         <div className="p-4">
-          <div className="window p-4">
+          <div className="window">
             <div className="title-bar">
               <button aria-label="Close" className="close"></button>
               <h1 className="title">Timer</h1>
