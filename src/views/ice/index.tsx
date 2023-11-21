@@ -1,7 +1,7 @@
 import iceice from '../../assets/newiceice.png'
 import icemp3 from '../../assets/ice.mp3'
 import icebottle from '../../assets/icebottle.png'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import WindowBox from '../../components/WindowBox'
 import NoBorderWindowBox from '../../components/NoBorderWindowBox'
 
@@ -12,18 +12,20 @@ const Ice: React.FC = () => {
   // state to check stopwatch running or not
   const [isRunning, setIsRunning] = useState(false)
 
-  const [paused, setPaused] = useState(true)
+  const [playing, setPlaying] = useState(false)
 
-  let audio = new Audio(icemp3)
+  const [audio, SetAudio] = useState<HTMLAudioElement | null>(null)
 
-  const start = useCallback(() => {
-    if (audio.paused) {
-      audio.play()
-      setPaused(false)
-    } else {
-      audio.pause()
-      setPaused(true)
-    }
+  const Playit = () => {
+    setPlaying(true)
+    audio && audio.play()
+  }
+  const Stopit = () => {
+    setPlaying(false)
+    audio && audio.pause()
+  }
+  useEffect(() => {
+    SetAudio(new Audio(icemp3))
   }, [])
 
   useEffect(() => {
@@ -80,7 +82,7 @@ const Ice: React.FC = () => {
                   <div className='spinning-track'>
                     <div
                       className={`inner-spinner spinning-track-artwork ${
-                        paused ? 'paused' : ''
+                        !playing ? 'paused' : ''
                       } `}
                       style={{
                         backgroundImage: 'url(' + iceice + ')',
@@ -94,8 +96,17 @@ const Ice: React.FC = () => {
                 </div>
               </div>
               <div className='absolute bottom-0 left-0 right-0'>
-                <button className='btn m-4' onClick={start}>
-                  {paused ? 'Play' : 'Pause'}
+                <button
+                  className='btn m-4'
+                  onClick={() => {
+                    if (playing) {
+                      Stopit()
+                    } else {
+                      Playit()
+                    }
+                  }}
+                >
+                  {!playing ? 'Play' : 'Pause'}
                 </button>
               </div>
             </NoBorderWindowBox>
