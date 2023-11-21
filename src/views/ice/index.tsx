@@ -54,7 +54,7 @@ const Ice: React.FC = () => {
     <>
       <div className="">
         <div className="md:flex">
-          <div className="window w-1/2 m-4">
+          <div className="window md:w-1/2 m-4">
             <div className="title-bar">
               <button aria-label="Close" className="close"></button>
               <h1 className="title">ICE Leaderboard</h1>
@@ -78,7 +78,7 @@ const Ice: React.FC = () => {
             </div>
           </div>
 
-          <div className="window w-1/2 m-4">
+          <div className="window md:w-1/2 m-4">
             <div className="title-bar">
               <button aria-label="Close" className="close"></button>
               <h1 className="title">Ice Ice Baby</h1>
