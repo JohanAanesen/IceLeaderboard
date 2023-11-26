@@ -4,18 +4,12 @@ import icebottle from '../../assets/icebottle.png'
 import { useEffect, useState } from 'react'
 import WindowBox from '../../components/WindowBox'
 import NoBorderWindowBox from '../../components/NoBorderWindowBox'
+import { format } from 'date-fns'
 
 const Ice: React.FC = () => {
-  // state to store time
-  const [time, setTime] = useState(0)
-
-  // state to check stopwatch running or not
-  const [isRunning, setIsRunning] = useState(false)
-
+  //IcePlayer
   const [playing, setPlaying] = useState(false)
-
   const [audio, SetAudio] = useState<HTMLAudioElement | null>(null)
-
   const Playit = () => {
     setPlaying(true)
     audio && audio.play()
@@ -28,31 +22,43 @@ const Ice: React.FC = () => {
     SetAudio(new Audio(icemp3))
   }, [])
 
+  //Stopwatch
+  const [time, setTime] = useState(new Date(0))
+  const [running, setRunning] = useState(false)
+  const [startTime, setStartTime] = useState<Date | null>(null)
+
+  function startTimer() {
+    const newStartTime = new Date()
+    setStartTime(newStartTime)
+    setRunning(true)
+  }
+
+  function stopTimer() {
+    setRunning(false)
+    setStartTime(null)
+  }
+
+  function resetTimer() {
+    setTime(new Date(0))
+    setRunning(false)
+    setStartTime(null)
+  }
+
+  function formattedTime() {
+    const seconds = format(time, 'ss')
+    const milliseconds = format(time, 'SS')
+    return `${seconds}:${milliseconds}`
+  }
+
   useEffect(() => {
-    let intervalId: number | undefined
-    if (isRunning) {
-      // setting time from 0 to 1 every 10 milisecond using javascript setInterval method
-      intervalId = window.setInterval(() => setTime(time + 1), 10)
+    if (running && startTime) {
+      const interval = setInterval(() => {
+        setTime(new Date(new Date().getTime() - startTime.getTime()))
+      }, 10)
+
+      return () => clearInterval(interval)
     }
-    return () => clearInterval(intervalId)
-  }, [isRunning, time])
-
-  // Seconds calculation
-  const seconds = Math.floor((time % 6000) / 100)
-
-  // Milliseconds calculation
-  const milliseconds = time % 100
-
-  // Method to start and stop timer
-  const startAndStop = () => {
-    setIsRunning(!isRunning)
-  }
-
-  // Method to reset timer back to 0
-  const reset = () => {
-    setIsRunning(false)
-    setTime(0)
-  }
+  }, [running, startTime, time])
 
   return (
     <>
@@ -115,15 +121,18 @@ const Ice: React.FC = () => {
         <div className='p-4'>
           <WindowBox title='Stopwatch'>
             <div className='modeless-dialog'>
-              <div className='text-4xl'>
-                {seconds.toString().padStart(2, '0')}:
-                {milliseconds.toString().padStart(2, '0')}
-              </div>
+              <div className='text-4xl'>{formattedTime()}</div>
               <div className='stopwatch-buttons'>
-                <button className='btn m-2' onClick={startAndStop}>
-                  {isRunning ? 'Stop' : 'Start'}
-                </button>
-                <button className='btn m-2' onClick={reset}>
+                {running ? (
+                  <button className='btn m-2 w-[100px]' onClick={stopTimer}>
+                    Stop
+                  </button>
+                ) : (
+                  <button className='btn m-2 w-[100px]' onClick={startTimer}>
+                    Start
+                  </button>
+                )}
+                <button className='btn m-2 w-[100px]' onClick={resetTimer}>
                   Reset
                 </button>
               </div>
