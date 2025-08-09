@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Bangers&family=Luckiest+Guy&display=swap");
+
+.leaderboard-list {
+  background: #fff;
+  border-radius: 0;
+  border: 2px solid #000;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+  height: 100%;
+  max-height: none;
+  overflow-y: auto;
+  color: #000;
+}
+
+/* To try other fonts, add the class to your <ul>:
+   - orbitron-font: 'Orbitron' (default)
+   - bangers-font: 'Bangers'
+   - luckiest-font: 'Luckiest Guy'
+*/
+.orbitron-font {
+  font-family: "Orbitron", "Courier New", Courier, monospace !important;
+}
+.bangers-font {
+  font-family: "Bangers", "Courier New", Courier, monospace !important;
+}
+.luckiest-font {
+  font-family: "Luckiest Guy", "Courier New", Courier, monospace !important;
+}
+
+.leaderboard-list li {
+  color: #000;
+  font-size: 1.1rem;
+  padding: 6px 0 6px 0;
+  margin: 0 8px;
+  border-bottom: 1px dashed #000;
+  text-shadow: none;
+  letter-spacing: 1px;
+  background: transparent;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.leaderboard-list li:last-child {
+  border-bottom: none;
+}
+
+.leaderboard-list li:hover {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}

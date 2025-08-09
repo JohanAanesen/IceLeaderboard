@@ -4,6 +4,7 @@ import icebottle from '../../assets/icebottle.png'
 import { useEffect, useState } from 'react'
 import WindowBox from '../../components/WindowBox'
 import NoBorderWindowBox from '../../components/NoBorderWindowBox'
+import './leaderboard80s.css'
 import { format } from 'date-fns'
 
 const Ice: React.FC = () => {
@@ -66,18 +67,21 @@ const Ice: React.FC = () => {
         <div className='grid md:grid-cols-2'>
           <div className='p-4'>
             <WindowBox title='ICE Leaderboard'>
-              <ul>
-                <li>1. Robin 4,91</li>
-                <li>2. Christian 5,10</li>
-                <li>3. Jaran 6,96</li>
-                <li>4. André 7,16</li>
-                <li>5. Bendik 7.28</li>
-                <li>6. Johan 7.95</li>
-                <li>7. Marius 9,91</li>
-                <li>8. Jonathan 13,51</li>
-                <li>9. Anndrea 20,45</li>
-                <li>10. Ida 22,79</li>
-              </ul>
+              <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <ul className="leaderboard-list orbitron-font" style={{ flex: 1, minHeight: 0 }}>
+                  <li>1. Robin 4,91</li>
+                  <li>2. Christian 5,10</li>
+                  <li>3. Slinning 6,66</li>
+                  <li>4. Jaran 6,96</li>
+                  <li>5. André 7,16</li>
+                  <li>6. Bendik 7.28</li>
+                  <li>7. Johan 7.95</li>
+                  <li>8. Marius 9,91</li>
+                  <li>9. Jonathan 13,51</li>
+                  <li>10. Anndrea 20,45</li>
+                  <li>11. Ida 22,79</li>
+                </ul>
+              </div>
             </WindowBox>
           </div>
           <div className='p-4'>
@@ -87,9 +91,8 @@ const Ice: React.FC = () => {
                 <div className='spinner-wrapper'>
                   <div className='spinning-track'>
                     <div
-                      className={`inner-spinner spinning-track-artwork ${
-                        !playing ? 'paused' : ''
-                      } `}
+                      className={`inner-spinner spinning-track-artwork ${!playing ? 'paused' : ''
+                        } `}
                       style={{
                         backgroundImage: 'url(' + iceice + ')',
                       }}
