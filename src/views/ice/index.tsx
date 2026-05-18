@@ -69,11 +69,11 @@ const Ice: React.FC = () => {
             <WindowBox title='ICE Leaderboard'>
               <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
                 <ul className="leaderboard-list orbitron-font" style={{ flex: 1, minHeight: 0 }}>
-                  <li>1. Robin 4,91</li>
-                  <li>2. Christian 5,10</li>
+                  <li>1. Christian 4,84</li>
+                  <li>2. Robin 4,91</li>
                   <li>3. Slinning 6,66</li>
-                  <li>4. Jaran 6,96</li>
-                  <li>5. André 7,16</li>
+                  <li>4. André 6,58</li>
+                  <li>5. Jaran 6,96</li>
                   <li>6. Bendik 7.28</li>
                   <li>7. Johan 7.95</li>
                   <li>8. Marius 9,91</li>
